@@ -1,0 +1,154 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.razer.exhibition"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = false
+    }
+
+}
+
+
+project.ext {
+    supportLibraryVersion = "27.1.1"
+    daggerVersion = "2.15"
+    rxJavaVersion = "2.1.0"
+    rxAndroidVersion = "2.0.1"
+    timberVersion = "4.5.1"
+    retrofit = "2.0.2"
+    lifecycleVersion = "1.1.1"
+    okhttpVersion = "3.9.0"
+    rxkotlinVersion = "2.1.0"
+    roomVersion = "1.1.0-alpha3"
+    glideVersion = "4.4.0"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Dagger core
+    kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
+
+    // ReactiveX
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$project.rxkotlinVersion"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$project.timberVersion"
+//
+    // Lifecycle
+    api "android.arch.lifecycle:runtime:$project.lifecycleVersion"
+    api "android.arch.lifecycle:extensions:$project.lifecycleVersion"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofit"
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    //OkHttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$project.okhttpVersion"
+
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$project.kotlin_version"
+    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.1'
+
+    //data binding
+
+    kapt "com.android.databinding:compiler:3.0.1"
+
+    //room
+    implementation "android.arch.persistence.room:runtime:$project.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$project.roomVersion"
+    kapt "android.arch.persistence.room:compiler:$project.roomVersion"
+
+    //Rv
+    implementation "com.android.support:recyclerview-v7:$project.supportLibraryVersion"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$project.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$project.glideVersion"
+
+    //circularprogressbar
+
+    //implementation 'me.tankery.lib:circularSeekBar:1.1.4'
+    implementation 'com.mikhaellopez:circularprogressbar:1.1.1'
+
+    //loggers
+    implementation 'com.github.ajalt:timberkt:+'
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true
+    }
+
+    //test
+    androidTestImplementation 'com.android.support:support-annotations:27.0.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    //rounded images
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //eventbus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //expandable recycler view item
+    implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+
+    //Robolectric environment
+    testImplementation 'androidx.test:core:1.0.0'
+    //Mockito framework
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+
+    //cardview
+
+    implementation 'com.android.support:cardview-v7:27.+'
+
+
+    //TESTING
+
+    testImplementation "org.robolectric:robolectric:3.4.2"
+    testImplementation 'org.assertj:assertj-core:2.5.0'
+
+    // testImplementation "org.mockito:mockito-android:1.10.19"
+    testImplementation "com.android.support.test:runner:1.0.2"
+    testImplementation "com.android.support.test:rules:1.0.2"
+    testImplementation ('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'javax.inject', module: 'javax.inject'
+        exclude group: 'com.squareup', module: 'javawriter'
+    }
+    kaptTest "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    compile project(path: ':model3')
+
+}
